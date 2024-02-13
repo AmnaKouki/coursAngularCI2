@@ -1,0 +1,11 @@
+<p>parent works!</p>
+<!-- <app-child>1</app-child>
+
+<!-- using string interpolation "{{value}}" to pass data from parent to child component
+<app-child>{{value}}</app-child>
+<app-child>3</app-child> -->
+
+<h3> Moyenne des enfants = {{moyenne}}</h3>
+<app-child *ngFor="let child of children" [nom]="child" (message)="computeAvg($event)">
+
+</app-child>

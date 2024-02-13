@@ -1,0 +1,7 @@
+<p>child works!</p>
+<!-- ng content is a directive that allows us to pass content from the parent component to the child component. -->
+<ng-content ></ng-content>
+<input type="number" name="note" [(ngModel)]="note"/>
+<button (click)="send()" [disabled]="buttonStatus">Send</button>
+
+<h6></h6>

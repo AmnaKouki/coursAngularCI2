@@ -1,0 +1,44 @@
+<div class="card border-primary">
+  <div class="card-header bg-primary text-white">
+    {{ title }}
+  </div>
+  <div class="card-body">
+    <ul>
+      <li>Name: {{ info.name }}</li>
+      <li>Email:{{ info.email }}</li>
+      <li>Date: {{ info.date }}</li>
+    </ul>
+
+    <div class="form-group">
+      <!-- import "FormsModule" in app.module to implement [(ngModel)] -->
+      <label for="message">Write a comment :</label>
+      <div class="input-group mb-2">
+        <input
+          type="text"
+          class="form-control"
+          id="message"
+          placeholder="Your message..."
+          [(ngModel)]="comment.message"
+        />
+      </div>
+
+      <button [disabled]="msg" class="btn btn-primary" (click)="addMsg()">
+        Add comment
+      </button>
+      <br />
+      <!-- Your Msg is : {{comment.msg}} | {{comment.date}} -->
+
+      <ng-template #noComment>
+        <!-- <p [hidden]="commentList.length!=0">No comments.</p> -->
+        <p>No comments.</p>
+      </ng-template>
+    </div>
+
+    <!-- On a compier le code des commentaires dans un composant comment -->
+    <h2>Comment components</h2>
+    <app-comment [comments]="commentList"></app-comment>
+
+
+    <button (click)="onContact()" class="btn btn-primary">Go to contacts</button>
+  </div>
+</div>

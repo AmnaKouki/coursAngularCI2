@@ -1,0 +1,68 @@
+
+<ng-template #noComment>
+    <!-- <p [hidden]="commentList.length!=0">No comments.</p> -->
+    <p>No comments.</p>
+  </ng-template>
+
+  <div *ngIf="comments.length > 0; else noComment">
+    <ul class="list-group">
+      <!-- <li [hidden]="commentList.length==0" *ngFor="let c of commentList">{{c.message}} | {{c.date}}</li> -->
+      
+      
+      <li
+        class="list-group-item d-flex justify-content-between align-items-center"
+        *ngFor="let c of comments;
+         let i=index; 
+         let isFirst= first; 
+         let isLast=last; 
+         let isEven=even; 
+         let isOdd=odd"
+      >
+<!-- on veut afficher les commentaires n'ordre pair -->
+      <!-- <div *ngIf="isEven">
+        {{i+1}}# {{isFirst}} | {{isLast}} | {{isEven}} | {{isOdd}} ==> {{ c.message }} 
+        <span class="bagde-pill badge-secondary"> {{ c.date|date: "HH:mm:ss" }} </span>
+      </div> -->
+
+
+      <!-- TODO: fix the space between comments with ng-container -->
+
+
+<!-- un espace vide est créé pour les commentaires impairs
+donc on change div par ng-container -->
+<!-- 
+      <ng-container  *ngIf="isEven" >
+        <span [ngStyle]="{color:color.rouge}">
+          {{i}}# {{isFirst}} | {{isLast}} | {{isEven}} | {{isOdd}} ==> {{ c.message }} 
+         
+        </span>
+        <span class="bagde-pill badge-secondary"> {{ c.date|date: "HH:mm:ss" }} </span>
+       
+        </ng-container>
+
+
+      <ng-container  *ngIf="isOdd" >
+        <span [ngStyle]="{color:color.vert}">
+          {{i}}# {{isFirst}} | {{isLast}} | {{isEven}} | {{isOdd}} ==> {{ c.message }} 
+        </span>
+        <span class="bagde-pill badge-secondary"> {{ c.date|date: "HH:mm:ss" }} </span>
+     
+          </ng-container> -->
+
+
+
+<!-- ng class -->
+
+<!-- you can use the css class 'red' instead of text-danger of bootstrap -->
+          <span  [ngClass]="{'text-success':isEven, 'text-danger':isOdd}" >              
+            <span >
+              {{i}}# {{isFirst}} | {{isLast}} | {{isEven}} | {{isOdd}} ==> {{ c.message | getChar:2}} 
+            </span>
+          </span> 
+            <span class="bagde-pill badge-secondary"> {{ c.date|date: "HH:mm:ss" }} </span>
+
+       </li>
+    </ul>
+  </div>
+
+
