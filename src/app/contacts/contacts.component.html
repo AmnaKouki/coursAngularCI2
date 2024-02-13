@@ -1,8 +1,14 @@
+<button class="btn btn-primary mb-2" (click)="onAddButton()">Add contact</button>
+
+
+
 <div class="card border-primary mb-3">
     <div class="card-header bg-primary text-white "> Contacts Component</div>
     <div class="card-body">
       <div *ngIf="contacts.length>0 ; else noContacts">
         <h3>Contact list</h3>
+
+
         <table class="table table-hover">
           <thead>
             <tr>

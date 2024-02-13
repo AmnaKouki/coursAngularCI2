@@ -19,8 +19,8 @@ export class GuardService{
 }
 
 export const authGuard: CanActivateFn = (route, state) => {
-  // return true;
+   return true;
 
-  return inject(GuardService).canActivate();
+ // return inject(GuardService).canActivate();
 
 };

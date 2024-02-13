@@ -21,5 +21,8 @@ export class ContactsComponent {
   onAbout(){
     this.router.navigate(['/about']);
   }
-  
+  onAddButton(){
+    this.router.navigate(['/contacts/edit']);
+  }
+
 }
