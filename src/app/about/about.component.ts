@@ -59,7 +59,7 @@ export class AboutComponent implements OnInit {
     this.comment.message = '';
   }
 onContact(){
- this.router.navigate(['/contact']);
+ this.router.navigate(['/contacts']);
 }
 
 }
