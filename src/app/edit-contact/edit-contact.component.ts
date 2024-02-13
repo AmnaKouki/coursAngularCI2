@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
+import { ContactService } from '../contact.service';
+import { Contact } from '../shared/contact';
 
 @Component({
   selector: 'app-edit-contact',
@@ -7,12 +10,31 @@ import { Router } from '@angular/router';
   styleUrls: ['./edit-contact.component.css']
 })
 export class EditContactComponent implements OnInit{
-  constructor(private router: Router) { }
+  constructor(private router: Router, private contactService: ContactService) { }
   ngOnInit(): void {
       
   }
   onContacts(){
     this.router.navigate(['/contacts']);
+  }
+  onAddContact(form : NgForm){
+   
+    let contact : Contact = {
+      id:0,
+      name: form.value.name,
+      email: form.value.email,
+      website: form.value.website,
+      projects: form.value.projects,
+      image: './../../assets/images/default.png',
+      featured:false
+    }
+console.log(form.value.name);
+console.log(form.value['name']);
+
+
+    this.contactService.addContact(contact);
+
+
   }
 
 }

@@ -23,4 +23,10 @@ export class ContactService {
  return this.contacts.splice(index,1);
 
   }
+  addContact(contact:Contact) : void{
+    contact.id = this.contacts.length + 1;
+    this.contacts.push(contact);
+  }
+
+
 }

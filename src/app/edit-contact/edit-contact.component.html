@@ -1,30 +1,30 @@
 <div class="card border-primary mb-3">
   <div class="card-header bg-primary text-white">Edit Contacts Component</div>
   <div class="card-body">
-    <form>
+    <form (ngSubmit)="onAddContact(form)" #form="ngForm">
       <div class="form-group">
         <label for="name">Name :</label>
-        <input id="name" type="text" class="form-control" />
+        <input id="name" name="name" type="text" class="form-control" ngModel required/>
       </div>
       <!-- diviser l'affichage en 2 colonnes  par un "form-row"-->
       <div class="form-row">
         <div class="col">
           <label for="email">Email :</label>
-          <input id="email" type="text" class="form-control" />
+          <input id="email" name="email"  type="text" class="form-control" ngModel required />
         </div>
         <div class="col">
           <label for="website">Website :</label>
-          <input id="website" type="text" class="form-control" />
+          <input id="website" type="text" name="website" class="form-control" ngModel required />
         </div>
       </div>
         <div class="form-group">
             <label for="projects">Projects :</label>
-            <input id="projects" type="text" class="form-control" />
+            <input id="projects" name="projects" type="text" class="form-control" ngModel required />
             </div>
 
-            <button class="btn btn-primary" type="submit">Save</button>
+            <button class="btn btn-primary" type="submit" [disabled]="!form.valid">Save</button>
     </form>
   </div>
 </div>
 
-<button class="btn btn-primary" (click)="onContacts()">Go to contacts</button>
+<button class="btn btn-primary" (click)="onContacts()" >Go to contacts</button>
