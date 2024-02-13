@@ -1,27 +1,87 @@
-# FirstProject
+# Framework Angular
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.2.11.
+`le 6-2-2024`
+### types de binding
 
-## Development server
+- `{{}}` : 	string interpolation
+- `[]`   :	property binding
+- `()`   :	event binding
+- `[()]` :	two-way binding
+--------------------------
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+``` html
+<!-- parent.component.html: -->
+<app-child>{{value}}</app-child>
 
-## Code scaffolding
+<!-- child.component.html -->
+<ng-content ></ng-content>
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+```
+*ng content is a directive that allows us to pass content from the parent component to the child component.* 
 
-## Build
+----------------
+l'initialisation sous `ngOnInit` se fait avant l'initialisation par des constructeur (page 122-123 )
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+--------------
 
-## Running unit tests
+ ### **ngAfterOnInit**
+ look for usage
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+ 
+## EventEmitter
+Créer un evenement comme `submit` `click`
+ ```typescript
+ @Output() message = new EventEmitter<number>();
+ ```
+utilisation :
+```html
+<app-child *ngFor="let child of children" 
+[nom]="child"
+(message)="computeAvg($event)">
+</app-child>
+```
+**Remarque :**
+- `$event` est toujours utilisée sans la declarée
+----------
+## Angular components :
+- ng-template
+- ng-container
+- ng-content
+- router-outlet
+---------------------
 
-## Running end-to-end tests
+## Navigate between pages
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+import the service "Router" in the constructor
+add a method "onContact"
+```typescript
+onContact(){
+ this.router.navigate(['/contact']);
+}
+```
+On the html page, add a button:
+```html
+<button (click)="onContact()">Go to contacts</button>
 
-## Further help
+```
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+## Navbar - clique qur le titre de la page
+`RouterLink` ne charge pas la page de nouveau.
+
+```
+ <a class="navbar-brand" routerLink="/">⭐ First Project ⭐</a>
+```
+
+`href` charge la page de nouveau :
+``` 
+<a class="navbar-brand"  href="/">⭐ First Project ⭐</a>
+```
+
+## Router
+
+L'utilisation de **' ** '**  poour tous les autres routes non déclarées
+```typescript
+const routes: Routes = [
+  { path: '**', component: NotFoundComponent },
+]
+  ```
