@@ -1,28 +1,52 @@
 <div class="card border-primary mb-3">
   <div class="card-header bg-primary text-white">Edit Contacts Component</div>
   <div class="card-body">
+
     <form (ngSubmit)="onAddContact(form)" #form="ngForm">
       <div class="form-group">
         <label for="name">Name :</label>
-        <input id="name" name="name" type="text" class="form-control" ngModel required/>
+        <input id="name" name="name" type="text" class="form-control" ngModel required
+        #name="ngModel" [ngClass]="{'is-invalid': name.invalid && name.dirty}"/>
+      
+        <div *ngIf="name.invalid && name.dirty" class="invalid-feedback">Invalide name.</div>
+      
       </div>
+       
+ 
       <!-- diviser l'affichage en 2 colonnes  par un "form-row"-->
       <div class="form-row">
         <div class="col">
           <label for="email">Email :</label>
-          <input id="email" name="email"  type="text" class="form-control" ngModel required />
+          <input id="email" name="email"  type="text" class="form-control" ngModel #email="ngModel"
+          required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}"
+          [ngClass]="{'is-invalid': email.invalid && email.dirty} "/>
+
+          <div *ngIf="email.invalid && email.dirty" class="invalid-feedback">Invalid email address.</div>
         </div>
+
+
         <div class="col">
           <label for="website">Website :</label>
-          <input id="website" type="text" name="website" class="form-control" ngModel required />
-        </div>
+          <input id="website" type="text" name="website" class="form-control" ngModel
+           required pattern="^https?://.+" #website="ngModel"
+           [ngClass]="{'is-invalid': website.invalid && website.dirty}" />
+           <div *ngIf="website.invalid && website.dirty" class="invalid-feedback">Invalid email address.</div>
+
+          </div>
+       
       </div>
         <div class="form-group">
             <label for="projects">Projects :</label>
-            <input id="projects" name="projects" type="text" class="form-control" ngModel required />
-            </div>
+            <input id="projects" name="projects" type="text" class="form-control" ngModel required 
+            #projects = "ngModel"
+            [ngClass]="{'is-invalid': projects.invalid && projects.dirty} "/>
+
+            <div *ngIf="projects.invalid && projects.dirty" class="invalid-feedback">Invalid email address.</div>
+          </div>
+
 
             <button class="btn btn-primary" type="submit" [disabled]="!form.valid">Save</button>
+            
     </form>
   </div>
 </div>

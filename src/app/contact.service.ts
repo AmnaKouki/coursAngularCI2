@@ -24,7 +24,7 @@ export class ContactService {
 
   }
   addContact(contact:Contact) : void{
-    contact.id = this.contacts.length + 1;
+    contact.id = this.contacts[this.contacts.length-1].id+1;
     this.contacts.push(contact);
   }
 
