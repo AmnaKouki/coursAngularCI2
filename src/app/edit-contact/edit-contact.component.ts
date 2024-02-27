@@ -10,23 +10,28 @@ import { Contact } from '../shared/contact';
   styleUrls: ['./edit-contact.component.css'],
 })
 export class EditContactComponent implements OnInit {
+  contact : Contact;
+
   constructor(private router: Router, private contactService: ContactService) {}
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.contact = {id: -1, name: '', email: '', website: '', projects: [], image: './../../assets/images/default.png', featured: false};
+  }
+
   onContacts() {
     this.router.navigate(['/contacts']);
   }
 
   onAddContact(form: NgForm) {
-    let contact: Contact = {
-      id: -1,
-      name: form.value.name,
-      email: form.value.email,
-      website: form.value.website,
-      projects: form.value.projects,
-      image: './../../assets/images/default.png',
-      featured: false,
-    };
-    this.contactService.addContact(contact);
+    // let contact: Contact = {
+    //   id: -1,
+    //   name: form.value.name,
+    //   email: form.value.email,
+    //   website: form.value.website,
+    //   projects: form.value.projects,
+    //   image: './../../assets/images/default.png',
+    //   featured: false,
+    // };
+    this.contactService.addContact(this.contact);
     this.router.navigate(['/contacts']);
   }
 }

@@ -8,6 +8,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { ContactDetailComponent } from './contact-detail/contact-detail.component';
 import { authGuard } from './guards/auth.guard';
 import { EditContactComponent } from './edit-contact/edit-contact.component';
+import { EditComponentReactiveFormComponent } from './edit-component-reactive-form/edit-component-reactive-form.component';
 
 const routes: Routes = [
   { path: '', canActivate: [authGuard] ,component: HomeComponent },
@@ -17,6 +18,7 @@ const routes: Routes = [
   //respecter l'ordre des routes des contacts 
   // ==> "edit"  ==> :id
   { path: 'contacts/edit',canActivate: [authGuard] , component: EditContactComponent },
+  { path: 'contacts/edit-reactive-form',canActivate: [authGuard] , component: EditComponentReactiveFormComponent },
   { path: 'contacts/:id',canActivate: [authGuard] , component: ContactDetailComponent },
   
   { path: 'signin', component: SigninComponent },

@@ -2,11 +2,14 @@
   <div class="card-header bg-primary text-white">Edit Contacts Component</div>
   <div class="card-body">
 
+    <!-- <form (ngSubmit)="onAddContact(form)" #form="ngForm"> --> 
+
     <form (ngSubmit)="onAddContact(form)" #form="ngForm">
       <div class="form-group">
         <label for="name">Name :</label>
         <input id="name" name="name" type="text" class="form-control" ngModel required
-        #name="ngModel" [ngClass]="{'is-invalid': name.invalid && name.dirty}"/>
+        #name="ngModel" [ngClass]="{'is-invalid': name.invalid && name.dirty}"
+        [(ngModel)]="contact.name" />
       
         <div *ngIf="name.invalid && name.dirty" class="invalid-feedback">Invalide name.</div>
       
@@ -19,7 +22,8 @@
           <label for="email">Email :</label>
           <input id="email" name="email"  type="text" class="form-control" ngModel #email="ngModel"
           required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}"
-          [ngClass]="{'is-invalid': email.invalid && email.dirty} "/>
+          [ngClass]="{'is-invalid': email.invalid && email.dirty} "
+          [(ngModel)]="contact.email"/>
 
           <div *ngIf="email.invalid && email.dirty" class="invalid-feedback">Invalid email address.</div>
         </div>
@@ -29,7 +33,8 @@
           <label for="website">Website :</label>
           <input id="website" type="text" name="website" class="form-control" ngModel
            required pattern="^https?://.+" #website="ngModel"
-           [ngClass]="{'is-invalid': website.invalid && website.dirty}" />
+           [ngClass]="{'is-invalid': website.invalid && website.dirty}" 
+           [(ngModel)]="contact.website"/>
            <div *ngIf="website.invalid && website.dirty" class="invalid-feedback">Invalid email address.</div>
 
           </div>
@@ -39,7 +44,8 @@
             <label for="projects">Projects :</label>
             <input id="projects" name="projects" type="text" class="form-control" ngModel required 
             #projects = "ngModel"
-            [ngClass]="{'is-invalid': projects.invalid && projects.dirty} "/>
+            [ngClass]="{'is-invalid': projects.invalid && projects.dirty} "
+            [(ngModel)]="contact.projects"/>
 
             <div *ngIf="projects.invalid && projects.dirty" class="invalid-feedback">Invalid email address.</div>
           </div>

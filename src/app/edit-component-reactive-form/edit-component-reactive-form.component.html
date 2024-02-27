@@ -1,0 +1,88 @@
+<div class="card border-primary mb-3">
+    <div class="card-header bg-primary text-white">Edit Contacts (Reactive Form) Component</div>
+    <div class="card-body">
+  
+ 
+  
+      <form (ngSubmit)="onAddContact()" [formGroup]="contactForm" >
+        <div class="form-group">
+          <label for="name">Name :</label>
+          <input id="name" name="name" type="text" class="form-control" 
+         formControlName="name"
+         [ngClass]="{'is-invalid': contactForm.get('name').invalid && contactForm.get('name').dirty,
+         'is-valid': contactForm.get('name').valid }"  
+         />
+          <!-- [ngClass]="{'is-invalid': name.invalid && name.dirty}"   [(ngModel)]="contact.name" -->
+        
+        
+          <div *ngIf="contactForm.get('name').invalid && contactForm.get('name').dirty" class="invalid-feedback">Invalide name.</div>
+            </div>
+          
+        
+
+
+        <!-- diviser l'affichage en 2 colonnes  par un "form-row"-->
+        <div class="form-row">
+          <div class="col">
+            <label for="email">Email :</label>
+            <input id="email" name="email"  type="text" class="form-control"
+            formControlName="email"
+            required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}"
+            [ngClass]="{'is-invalid': contactForm.get('email').invalid && contactForm.get('email').dirty} "
+             />
+
+            <!-- ngModel #email="ngModel"
+            required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}"
+            [ngClass]="{'is-invalid': email.invalid && email.dirty} "
+            [(ngModel)]="contact.email"/> -->
+  
+            <div *ngIf="contactForm.get('email').invalid" class="invalid-feedback">Invalid email.</div>
+            <div *ngIf="contactForm.get('email').hasError('required')" >Please, provide an email.</div>
+            <div *ngIf="contactForm.get('email').hasError('email')" >Please, provide a proper email.</div>
+          </div>
+               
+            
+          <div class="col">
+            <label for="website">Website :</label>
+            <input id="website" type="text" name="website" class="form-control" formControlName="website"
+            [ngClass]="{'is-invalid': contactForm.get('website').invalid && contactForm.get('website').dirty}" pattern="^https?://.+" />
+            <!--             
+            ngModel
+             required pattern="^https?://.+" #website="ngModel"
+             [ngClass]="{'is-invalid': website.invalid && website.dirty}" 
+             [(ngModel)]="contact.website"/>
+  
+            </div> -->
+            <div *ngIf="contactForm.get('website').invalid && contactForm.get('website').dirty" class="invalid-feedback">
+            <div *ngIf="contactForm.get('website').hasError('required')"> Please, provide a website.
+            </div>
+            <div *ngIf="contactForm.get('website').hasError('pattern')"> Please, provide a proper website.
+            </div>
+        
+        </div>
+        </div>
+         </div>
+      
+          <div class="form-group">
+              <label for="projects">Projects :</label>
+              <input id="projects" name="projects" type="text" class="form-control" formControlName="projects" 
+              [ngClass]="{'is-invalid': contactForm.get('projects').invalid && contactForm.get('projects').dirty} "/>
+              
+              <!-- ngModel required 
+              #projects = "ngModel"
+              [ngClass]="{'is-invalid': projects.invalid && projects.dirty} "
+              [(ngModel)]="contact.projects"
+            -->
+            <div *ngIf="contactForm.get('projects').invalid && contactForm.get('projects').dirty" class="invalid-feedback">Please provide a project.</div> 
+              
+            </div>
+            
+              <button class="btn btn-primary" type="submit" [disabled]="!contactForm.valid">Save</button>
+              
+      </form>
+    </div>
+    
+  </div>
+  
+  <button class="btn btn-primary" (click)="onContacts()" >Go to contacts</button>
+  

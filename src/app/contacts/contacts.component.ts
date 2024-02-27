@@ -21,8 +21,11 @@ export class ContactsComponent {
   onAbout(){
     this.router.navigate(['/about']);
   }
-  onAddButton(){
+  onAddContact(){
     this.router.navigate(['/contacts/edit']);
+  }
+  onAddContactReactiveForm(){
+    this.router.navigate(['/contacts/edit-reactive-form']);
   }
 
 }
