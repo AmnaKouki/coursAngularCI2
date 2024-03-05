@@ -10,11 +10,23 @@ import { Contact } from '../shared/contact';
 })
 export class ContactsComponent {
   contacts : Contact[];
+  contact: Contact;
+  idContact : number;
   constructor(private router : Router, private contactService : ContactService){}
 
   ngOnInit(){
-    this.contacts = this.contactService.getContacts();
+   // this.contacts = this.contactService.getContacts();
+    this.contactService.getContacts().subscribe((data:Contact[])=>{
+      this.contacts = data;
+    });
+
+  this.contactService.getContactById(this.idContact).subscribe((data:Contact)=>{
+      this.contact = data;
+    });
   }
+
+
+
   onDelete(id : number){
     this.contactService.deleteContactById(id);
   }

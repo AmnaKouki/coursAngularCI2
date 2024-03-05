@@ -16,7 +16,10 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { ContactDetailComponent } from './contact-detail/contact-detail.component';
 import { EditContactComponent } from './edit-contact/edit-contact.component';
 import { EditComponentReactiveFormComponent } from './edit-component-reactive-form/edit-component-reactive-form.component';
-
+import { HttpClientModule } from '@angular/common/http';
+import { baseUrl } from './shared/baseUrl';
+import { ContactService } from './contact.service';
+import { AboutService } from './services/about.service';
 
 @NgModule({
   declarations: [
@@ -40,8 +43,9 @@ import { EditComponentReactiveFormComponent } from './edit-component-reactive-fo
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
+    HttpClientModule,
   ],
-  providers: [],
+  providers: [ {provide : 'baseUrl', useValue : baseUrl}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

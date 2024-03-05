@@ -14,7 +14,7 @@ export class EditContactComponent implements OnInit {
 
   constructor(private router: Router, private contactService: ContactService) {}
   ngOnInit(): void {
-    this.contact = {id: -1, name: '', email: '', website: '', projects: [], image: './../../assets/images/default.png', featured: false};
+    this.contact = {id: null, name: '', email: '', website: '', projects: [], image: './images/default.png', featured: false};
   }
 
   onContacts() {
@@ -31,7 +31,11 @@ export class EditContactComponent implements OnInit {
     //   image: './../../assets/images/default.png',
     //   featured: false,
     // };
-    this.contactService.addContact(this.contact);
-    this.router.navigate(['/contacts']);
+    this.contactService.addContact(this.contact).subscribe((contact) => {
+      console.log('Successfully added new contact', contact);
+      this.router.navigate(['/contacts']);
+    
+    });
+    
   }
 }
