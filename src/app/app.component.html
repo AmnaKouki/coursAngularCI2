@@ -16,20 +16,21 @@
   
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
-        <li class="nav-item active">
-          <a class="nav-link" routerLink="/">Home <span class="sr-only">(current)</span></a>
+        <li class="nav-item " *ngIf="isAuth">
+          <a class="nav-link" routerLink="/" outerLinkActive="active">Home <span class="sr-only">(current)</span></a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" routerLink="/about">About</a>
+        <li *ngIf="isAuth" class="nav-item">
+          <a class="nav-link" routerLink="/about" outerLinkActive="active">About</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" routerLink="/contacts">Contacts</a>
+        <li *ngIf="isAuth" class="nav-item">
+          <a class="nav-link" outerLinkActive="active" routerLink="/contacts">Contacts</a>
         </li>
 
         <li class="nav-item">
-          <a class="nav-link" routerLink="/signin">Signin</a>
+          <a class="nav-link" outerLinkActive="active" routerLink="/signin">Signin</a>
         </li>
-    
+        <!-- TODO: finish what is done in the course v6. "outerLink" is the last thing we did.
+     -->
       </ul>
       <form class="form-inline my-2 my-lg-0">
         <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
