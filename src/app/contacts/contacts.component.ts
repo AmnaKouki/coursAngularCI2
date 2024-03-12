@@ -13,6 +13,7 @@ export class ContactsComponent {
   contact: Contact;
   idContact : number;
   errMsg: string;
+  isWaiting = true;
   constructor(private router : Router, private contactService : ContactService){}
 
   ngOnInit(){
@@ -22,10 +23,12 @@ export class ContactsComponent {
       this.contacts = data;
     });
     */
-     .subscribe({next: (contacts)=> {this.contacts = contacts;},
+  .subscribe({next: (contacts)=> {this.contacts = contacts; this.isWaiting = false;},
       error: (errMsg) => {this.contacts = [];
-                         this.errMsg = <any>errMsg;},
-      complete: () => {console.log("complete");}}
+                         this.errMsg = <any>errMsg;this.isWaiting = false;},
+                         /*this.isWaiting = false,*/
+      complete: () => {console.log("complete");
+      this.isWaiting = false;}} // complete est appelé après next et error
 
     );
 

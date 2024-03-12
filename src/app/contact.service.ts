@@ -25,7 +25,8 @@ export class ContactService {
     // return this.httpClient.get<Contact[]>(this.baseUrl+'contact');
  
  // with error handling
-    return this.httpClient.get<Contact[]>(this.baseUrl+'contact').pipe(catchError(this.processHTTPMsgService.handleError));
+ 
+    return this.httpClient.get<Contact[]>(this.baseUrl+'contacts').pipe(catchError(this.processHTTPMsgService.handleError));
   }
 
   // ----> another way of doing it :
