@@ -9,13 +9,17 @@ import { Observable } from 'rxjs';
 })
 export class ContactService {
   contacts: Contact[] = CONTACTS;
+  httpOption = {
+    headers : new HttpHeaders({'Content-Type' : 'application/json'})
+  }
+
 
   constructor(private httpClient: HttpClient, @Inject('baseUrl') public baseUrl:string) {}
 
   getContacts(): Observable<Contact[]> {
     // console.log(this.contacts);
     // return this.contacts
-    return this.httpClient.get<Contact[]>(this.baseUrl+'contacts');
+    return this.httpClient.get<Contact[]>(this.baseUrl+'contact');
   }
 
   // ----> another way of doing it :
@@ -34,17 +38,24 @@ export class ContactService {
   // getContactById(id: number): Contact {
   //   return this.contacts.find((contact) => contact.id == id);
   // }
-  deleteContactById(id: number): Contact[] {
-    let index = this.contacts.findIndex((contact) => contact.id == id);
-    return this.contacts.splice(index, 1);
+
+  // Version statique:
+  // deleteContactById(id: number): Contact[] {
+  //   let index = this.contacts.findIndex((contact) => contact.id == id);
+  //   return this.contacts.splice(index, 1);
+  // }
+  deleteContactById(id: number): Observable<Contact> {
+    return this.httpClient.delete<Contact>(this.baseUrl+'contacts/'+id)
   }
   addContact(contact: Contact) : Observable<Contact> {
     // contact.id = this.contacts[this.contacts.length - 1].id + 1;
     // this.contacts.push(contact);
+   return this.httpClient.post<Contact>(this.baseUrl+'contacts',contact, this.httpOption);
+  }
 
-    const httpOption = {
-      headers : new HttpHeaders({'Content-Type' : 'application/json'})
-    }
-   return this.httpClient.post<Contact>(this.baseUrl+'contacts',contact, httpOption);
+  updateContact( contact: Contact):Observable<Contact> {
+  
+    return this.httpClient.put<Contact>(this.baseUrl+'contacts/'+contact.id,contact, this.httpOption);
+
   }
 }

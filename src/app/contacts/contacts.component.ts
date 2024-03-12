@@ -20,21 +20,28 @@ export class ContactsComponent {
       this.contacts = data;
     });
 
-  this.contactService.getContactById(this.idContact).subscribe((data:Contact)=>{
-      this.contact = data;
-    });
+  // this.contactService.getContactById(this.idContact).subscribe((data:Contact)=>{
+  //     this.contact = data;
+  //   });
   }
 
 
 
   onDelete(id : number){
-    this.contactService.deleteContactById(id);
+    //this.contactService.deleteContactById(id);
+    this.contactService.deleteContactById(id).subscribe((data:Contact)=> {
+      console.log("contact deleted");
+      let index = this.contacts.findIndex((contact) => contact.id == id);
+      return this.contacts.splice(index, 1);
+      
+  
+  });
   }
   onAbout(){
     this.router.navigate(['/about']);
   }
   onAddContact(){
-    this.router.navigate(['/contacts/edit']);
+    this.router.navigate(['/contacts/edit/-1']);
   }
   onAddContactReactiveForm(){
     this.router.navigate(['/contacts/edit-reactive-form']);

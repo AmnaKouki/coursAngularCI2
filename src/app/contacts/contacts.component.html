@@ -22,6 +22,7 @@
             <tr *ngFor="let c of contacts">
               <td>{{c.name}}</td>
               <td><a class="btn btn-success" routerLink="/contacts/{{c.id}}">Detail</a></td>
+              <td><a class="btn btn-warning" routerLink="/contacts/edit/{{c.id}}">Edit</a></td>
               <td><a class="btn btn-danger" (click)="onDelete(c.id)">Delete</a></td>
             </tr>
           </tbody>

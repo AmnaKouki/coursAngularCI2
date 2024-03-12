@@ -1,13 +1,16 @@
 <div class="card border-primary mb-3">
   <div class="card-header bg-primary text-white">Edit Contacts Component</div>
+
   <div class="card-body">
+    <h3 *ngIf="!contact.id;else update" > Add contact</h3>
+    <ng-template #update> <h3>Update contact</h3> </ng-template>
 
     <!-- <form (ngSubmit)="onAddContact(form)" #form="ngForm"> --> 
 
-    <form (ngSubmit)="onAddContact(form)" #form="ngForm">
+    <form (ngSubmit)="onAddContact()" #form="ngForm">
       <div class="form-group">
         <label for="name">Name :</label>
-        <input id="name" name="name" type="text" class="form-control" ngModel required
+        <input id="name" name="name" type="text" class="form-control" [(ngModel)]="contact.name" required 
         #name="ngModel" [ngClass]="{'is-invalid': name.invalid && name.dirty}"
         [(ngModel)]="contact.name" />
       
@@ -20,7 +23,7 @@
       <div class="form-row">
         <div class="col">
           <label for="email">Email :</label>
-          <input id="email" name="email"  type="text" class="form-control" ngModel #email="ngModel"
+          <input id="email" name="email"  type="text" class="form-control" [(ngModel)]="contact.email" #email="ngModel"
           required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}"
           [ngClass]="{'is-invalid': email.invalid && email.dirty} "
           [(ngModel)]="contact.email"/>
@@ -31,7 +34,7 @@
 
         <div class="col">
           <label for="website">Website :</label>
-          <input id="website" type="text" name="website" class="form-control" ngModel
+          <input id="website" type="text" name="website" class="form-control" [(ngModel)]="contact.website"
            required pattern="^https?://.+" #website="ngModel"
            [ngClass]="{'is-invalid': website.invalid && website.dirty}" 
            [(ngModel)]="contact.website"/>
@@ -42,7 +45,7 @@
       </div>
         <div class="form-group">
             <label for="projects">Projects :</label>
-            <input id="projects" name="projects" type="text" class="form-control" ngModel required 
+            <input id="projects" name="projects" type="text" class="form-control" [(ngModel)]="contact.projects" required 
             #projects = "ngModel"
             [ngClass]="{'is-invalid': projects.invalid && projects.dirty} "
             [(ngModel)]="contact.projects"/>
@@ -57,4 +60,4 @@
   </div>
 </div>
 
-<button class="btn btn-primary" (click)="onContacts()" >Go to contacts</button>
+<button class="btn btn-primary" (click)="onContacts()" >Go to contacts </button>

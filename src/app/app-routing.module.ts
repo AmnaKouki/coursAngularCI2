@@ -17,7 +17,7 @@ const routes: Routes = [
 
   //respecter l'ordre des routes des contacts 
   // ==> "edit"  ==> :id
-  { path: 'contacts/edit',canActivate: [authGuard] , component: EditContactComponent },
+  { path: 'contacts/edit/:id',canActivate: [authGuard] , component: EditContactComponent },
   { path: 'contacts/edit-reactive-form',canActivate: [authGuard] , component: EditComponentReactiveFormComponent },
   { path: 'contacts/:id',canActivate: [authGuard] , component: ContactDetailComponent },
   
