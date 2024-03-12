@@ -12,18 +12,33 @@ export class ContactsComponent {
   contacts : Contact[];
   contact: Contact;
   idContact : number;
+  errMsg: string;
   constructor(private router : Router, private contactService : ContactService){}
 
   ngOnInit(){
    // this.contacts = this.contactService.getContacts();
-    this.contactService.getContacts().subscribe((data:Contact[])=>{
+    this.contactService.getContacts()
+/*      .subscribe((data:Contact[])=>{
       this.contacts = data;
     });
+    */
+     .subscribe({next: (contacts)=> {this.contacts = contacts;},
+      error: (errMsg) => {this.contacts = [];
+                         this.errMsg = <any>errMsg;},
+      complete: () => {console.log("complete");}}
+
+    );
+
+    // .subscribe((data:Contact[])=>{
+    //   this.contacts = data;
+    // }, errMsg => this.errMsg = <any>errMsg);
+  }
+
 
   // this.contactService.getContactById(this.idContact).subscribe((data:Contact)=>{
   //     this.contact = data;
   //   });
-  }
+ 
 
 
 
